@@ -1,2 +1,12 @@
 Pep Guardiola
-Lionel Messi 92 Forward 100
+Messi|95|Forward|100
+Neymar_Jr|83|Forward|88
+Luis_Suarez|93|Forward|88
+Andres_Iniesta|89|Midfielder|84
+Sergio_Busquets|88|Midfielder|84
+Xavi|87|Midfielder|84
+Jordi_Alba|87|Defender|90
+Gerard_Pique|88|Defender|90
+Javier_Mascherano|86|Defender|90
+Dani_Alves|87|Defender|90
+Ter_Stegen|88|Goalkeeper|94

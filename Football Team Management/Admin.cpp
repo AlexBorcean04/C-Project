@@ -1,39 +1,45 @@
 #include "Admin.h"
 #include <fstream>
 #include <iostream>
+#include <sstream>
 
 Admin::Admin(Team& team) : team(team) {}
 
 bool Admin::login(const std::string& inputFirstName, const std::string& inputLastName) {
-    std::ifstream file("admin.txt");
+    std::ifstream file("admins.txt");
     if (file.is_open()) {
-        std::string storedFirstName, storedLastName;
-        file >> storedFirstName >> storedLastName;
-        file.close();
-        if (storedFirstName == inputFirstName && storedLastName == inputLastName) {
-            firstName = storedFirstName;
-            lastName = storedLastName;
-            if (fileExists("admin_" + firstName + "_" + lastName + ".txt")) {
-                loadAdminData(); // Load the team data after successful login
+        std::string line;
+        while (std::getline(file, line)) {
+            std::istringstream iss(line);
+            std::string storedFirstName, storedLastName;
+            iss >> storedFirstName >> storedLastName;
+            if (storedFirstName == inputFirstName && storedLastName == inputLastName) {
+                firstName = storedFirstName;
+                lastName = storedLastName;
+                if (fileExists("admin_" + firstName + "_" + lastName + ".txt")) {
+                    loadAdminData(); // Load the team data after successful login
+                }
+                return true;
             }
-            return true;
         }
+        file.close();
     }
     return false;
 }
 
 void Admin::createAdmin(const std::string& newFirstName, const std::string& newLastName) {
-    std::ofstream file("admin.txt");
+    std::ofstream file("admins.txt", std::ios::app); // Append to the file
     if (file.is_open()) {
-        file << newFirstName << " " << newLastName;
+        file << newFirstName << " " << newLastName << "\n";
         file.close();
         firstName = newFirstName;
         lastName = newLastName;
+        saveAdminData(); // Save the new admin data
     }
 }
 
 bool Admin::adminExists() const {
-    std::ifstream file("admin.txt");
+    std::ifstream file("admins.txt");
     return file.good();
 }
 
@@ -79,7 +85,7 @@ void Admin::saveAdminData() const {
 
         // Save team data
         for (const auto& player : team.getAllPlayers()) {
-            file << player.getName() << " " << player.getRating() << " " << player.getPosition() << " " << player.getFitnessLevel() << "\n";
+            file << player.getName() << "|" << player.getRating() << "|" << player.getPosition() << "|" << player.getFitnessLevel() << "\n";
         }
         file.close();
         std::cout << "Admin data saved successfully." << std::endl;
@@ -93,14 +99,21 @@ void Admin::loadAdminData() {
     std::ifstream file(filename);
     if (file.is_open()) {
         std::cout << "Loading admin data from " << filename << std::endl;
-        std::string name, position;
-        int rating, fitnessLevel;
-        // Ignore the first line since it's the admin info
-        std::string adminInfo;
-        std::getline(file, adminInfo);
+        std::string line;
+        std::getline(file, line); // Ignore the first line since it's the admin info
 
         team.clear(); // Clear the current team data
-        while (file >> name >> rating >> position >> fitnessLevel) {
+        while (std::getline(file, line)) {
+            std::istringstream iss(line);
+            std::string name, position;
+            int rating, fitnessLevel;
+
+            std::getline(iss, name, '|');
+            iss >> rating;
+            iss.ignore(1, '|');
+            std::getline(iss, position, '|');
+            iss >> fitnessLevel;
+
             Player player(name, rating, position);
             player.setFitnessLevel(fitnessLevel);
             team.addPlayer(player, team.getAllPlayers().size() < 11); // Ensure correct starter and substitute assignment

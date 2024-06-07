@@ -130,7 +130,7 @@ void Team::loadData(const std::string& filename) {
             Player player(name, rating, position);
             player.setFitnessLevel(fitnessLevel);
             allPlayers.push_back(player);
-            if (starters.size() < 11) {
+            if (starters.size() < 11) { // Load first 11 as starters
                 starters.push_back(player);
             } else {
                 substitutes.push_back(player);
@@ -188,8 +188,10 @@ void Team::updateFitnessAfterMatch() {
         }
     }
 
+    // Set fitness level of substitutes to 100
     for (auto& substitute : substitutes) {
         substitute.setFitnessLevel(100);
+        // Synchronize the fitness level with allPlayers
         for (auto& player : allPlayers) {
             if (player.getName() == substitute.getName()) {
                 player.setFitnessLevel(100);

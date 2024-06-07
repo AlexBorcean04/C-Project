@@ -10,7 +10,7 @@ private:
     std::string firstName;
     std::string lastName;
 
-    bool fileExists(const std::string& filename) const;
+    bool fileExists(const std::string& filename) const; // Helper function to check file existence
 
 public:
     Admin(Team& team);

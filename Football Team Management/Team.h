@@ -27,8 +27,8 @@ private:
     std::vector<Player> substitutes;
     std::vector<Player> allPlayers;
 
-    bool playerExists(const std::string& playerName) const;
-    void updateFitnessAfterMatch();
+    bool playerExists(const std::string& playerName) const; // Check if a player exists
+    void updateFitnessAfterMatch(); // Update fitness levels after the match
 };
 
 #endif // TEAM_H

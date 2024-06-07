@@ -85,11 +85,11 @@ int main() {
         switch (option) {
             case 1:
                 std::cout << "Enter player name: ";
-                std::cin.ignore(); // Clear the newline character from the input buffer
+                std::cin.ignore();
                 std::getline(std::cin, name);
                 std::cout << "Enter rating: ";
                 std::cin >> rating;
-                std::cin.ignore(); // Clear the newline character from the input buffer
+                std::cin.ignore();
                 std::cout << "Enter position: ";
                 std::getline(std::cin, position);
                 std::cout << "Is the player a starter (1 for Yes, 0 for No): ";
@@ -103,7 +103,7 @@ int main() {
                 break;
             case 2:
                 std::cout << "Enter player name to release: ";
-                std::cin.ignore(); // Clear the newline character from the input buffer
+                std::cin.ignore();
                 std::getline(std::cin, name);
                 admin.releasePlayer(name);
                 std::cout << "Player released successfully.\n";
@@ -116,7 +116,7 @@ int main() {
                 break;
             case 5:
                 std::cout << "Enter starter player name: ";
-                std::cin.ignore(); // Clear the newline character from the input buffer
+                std::cin.ignore();
                 std::getline(std::cin, starterName);
                 std::cout << "Enter substitute player name: ";
                 std::getline(std::cin, subName);
