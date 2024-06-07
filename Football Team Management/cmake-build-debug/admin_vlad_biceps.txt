@@ -1,0 +1,14 @@
+vlad biceps
+Borcan 90 Forward 58
+Andrei 91 Midfielder 92
+Lica 92 Forward 58
+Calin 89 Forward 58
+Toco 84 Defender 65
+Cioara 81 Defender 65
+Dani 79 Defender 65
+Suru 84 Goalkeeper 79
+Flav 86 Midfielder 44
+Birescu 100 Defender 65
+Saba 99 Midfielder 44
+Martinescu 86 Defender 100
+neymar 88 Forward 100

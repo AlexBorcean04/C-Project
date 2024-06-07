@@ -1,0 +1,3 @@
+C:/Users/felix/CLionProjects/Football Team Management/cmake-build-debug/CMakeFiles/Football_Team_Management.dir
+C:/Users/felix/CLionProjects/Football Team Management/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/felix/CLionProjects/Football Team Management/cmake-build-debug/CMakeFiles/rebuild_cache.dir
